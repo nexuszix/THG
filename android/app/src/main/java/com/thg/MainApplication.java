@@ -14,6 +14,12 @@ import com.facebook.soloader.SoLoader;
 import java.util.Arrays;
 import java.util.List;
 
+// added by lnw //
+import com.facebook.CallbackManager;
+import com.facebook.FacebookSdk;
+import com.facebook.reactnative.androidsdk.FBSDKPackage;
+////////////////*/
+
 public class MainApplication extends Application implements ReactApplication {
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
@@ -26,7 +32,8 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            new FBSDKPackage()
+            // lnw // new FBSDKPackage()
+              new FBSDKPackage(mCallbackManager)
       );
     }
   };
@@ -36,9 +43,24 @@ public class MainApplication extends Application implements ReactApplication {
     return mReactNativeHost;
   }
 
+/*/ remove original //
   @Override
   public void onCreate() {
     super.onCreate();
-    SoLoader.init(this, /* native exopackage */ false);
+    SoLoader.init(this, /* native exopackage *//* false);
   }
+  //////////////////*/
+
+  // added by lnw //
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
+  }
+  ////////////////*/
 }
