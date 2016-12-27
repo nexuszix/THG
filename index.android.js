@@ -12,6 +12,7 @@ import {
   View,
   Image,
 } from 'react-native';
+import 'react-native-fbsdk';
 
 export default class THG extends Component {
   render() {
@@ -24,17 +25,17 @@ export default class THG extends Component {
 	    }}>
 		    <View style={{flex: 2, backgroundColor: 'white', alignItems: 'center', justifyContent:'flex-end'}}>
 		    	<Image source={
-		    		require('./img/favicon.jpg')
-		    		//uri:
-		    		//'https://facebook.github.io/react/img/logo_og.png'
+		    		//require('./img/favicon.jpg')
+		    		{uri:
+		    		'https://facebook.github.io/react/img/logo_og.png'}
 		    		//'https://thonburihospital.com/2015_new/asset/images/thonburi-hospital-logo.png'
 		    	} 
-				//style={{width: 100, height: 110}}
+				//style={{width: 200, height: 200}}
 		    	/>
 		    </View>
 		    <View style={{flex: 1, backgroundColor: 'skyblue'}}>
 			{
-				<FBLoginButton
+				<LoginButton
 			      publishPermissions={["publish_actions"]}
 			      onLoginFinished={
 			        (error, result) => {
@@ -59,7 +60,7 @@ export default class THG extends Component {
 
 const FBSDK = require('react-native-fbsdk');
 const {
-  FBLoginButton,
+  LoginButton,
 } = FBSDK;
 
 const styles = StyleSheet.create({

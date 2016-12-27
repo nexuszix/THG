@@ -18,9 +18,25 @@ import java.util.List;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookSdk;
 import com.facebook.reactnative.androidsdk.FBSDKPackage;
+import com.facebook.appevents.AppEventsLogger;
 ////////////////*/
 
 public class MainApplication extends Application implements ReactApplication {
+
+  // added by lnw //
+  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
+  protected static CallbackManager getCallbackManager() {
+    return mCallbackManager;
+  }
+
+  @Override
+  public void onCreate() {
+    super.onCreate();
+    FacebookSdk.sdkInitialize(getApplicationContext());
+    // If you want to use AppEventsLogger to log events.
+    AppEventsLogger.activateApp(this);
+  }
+  ////////////////*/
 
   private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
     @Override
@@ -32,7 +48,6 @@ public class MainApplication extends Application implements ReactApplication {
     protected List<ReactPackage> getPackages() {
       return Arrays.<ReactPackage>asList(
           new MainReactPackage(),
-            // lnw // new FBSDKPackage()
               new FBSDKPackage(mCallbackManager)
       );
     }
@@ -51,16 +66,5 @@ public class MainApplication extends Application implements ReactApplication {
   }
   //////////////////*/
 
-  // added by lnw //
-  private static CallbackManager mCallbackManager = CallbackManager.Factory.create();
-  protected static CallbackManager getCallbackManager() {
-    return mCallbackManager;
-  }
 
-  @Override
-  public void onCreate() {
-    super.onCreate();
-    FacebookSdk.sdkInitialize(getApplicationContext());
-  }
-  ////////////////*/
 }
