@@ -11,75 +11,47 @@ import {
   Text,
   View,
   Image,
+  Navigator,
 } from 'react-native';
 import 'react-native-fbsdk';
+
+import MyScene from './MyScene';
 
 export default class THG extends Component {
   render() {
 	return (
-	    <View style={{
-		    flex: 1,
-		    flexDirection: 'column',
-		    justifyContent: 'space-between',
-		    alignItems: 'stretch',
-	    }}>
-		    <View style={{flex: 2, backgroundColor: 'white', alignItems: 'center', justifyContent:'flex-end'}}>
-		    	<Image source={
-		    		//require('./img/favicon.jpg')
-		    		{uri:
-		    		'https://facebook.github.io/react/img/logo_og.png'}
-		    		//'https://thonburihospital.com/2015_new/asset/images/thonburi-hospital-logo.png'
-		    	} 
-				//style={{width: 200, height: 200}}
-		    	/>
-		    </View>
-		    <View style={{flex: 1, backgroundColor: 'skyblue'}}>
-			{
-				<LoginButton
-			      publishPermissions={["publish_actions"]}
-			      onLoginFinished={
-			        (error, result) => {
-			          if (error) {
-			            alert("Login failed with error: " + result.error);
-			          } else if (result.isCancelled) {
-			            alert("Login was cancelled");
-			          } else {
-			            alert("Login was successful with permissions: " + result.grantedPermissions)
-			          }
-			        }
-			      }
-			      onLogoutFinished={() => alert("User logged out")}/>
-			    //<Text style={styles.welcome}>B</Text></View>
-			}</View>
-		    <View style={{flex: 1, backgroundColor: 'steelblue'}}>
-			    <Text style={styles.welcome}>C</Text></View>
-	    </View>
+		<Navigator
+	        initialRoute={{ title: 'My Initial Scene', index: 0 }}
+	        renderScene={(route, navigator) =>
+	          <MyScene
+	            title={route.title}
+	            index={route.index}
+
+	            // Function to call when a new scene should be displayed
+	            onForward={() => {    
+	              const nextIndex = route.index + 1;
+	              navigator.push({
+	                title: 'Scene ' + nextIndex,
+	                index: nextIndex,
+	              });
+	            }}
+
+	            // Function to call to go back to the previous scene
+	            onBack={() => {
+	              if (route.index > 0) {
+	                navigator.pop();
+	              }
+	            }}
+	          />
+	        }
+	      />
+	    
+
+
     );
   }
 }
 
-const FBSDK = require('react-native-fbsdk');
-const {
-  LoginButton,
-} = FBSDK;
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 AppRegistry.registerComponent('THG', () => THG);
