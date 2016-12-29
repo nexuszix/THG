@@ -131,6 +131,7 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:+"  // From node_modules
     compile "com.facebook.android:facebook-android-sdk:[4,5)"
+    compile 'com.google.firebase:firebase-core:10.0.1'
 
 }
 
@@ -141,4 +142,4 @@ task copyDownloadableDepsToLibs(type: Copy) {
     into 'libs'
 }
 
-//apply plugin: 'com.google.gms.google-services'
+apply plugin: 'com.google.gms.google-services'

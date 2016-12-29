@@ -8,6 +8,8 @@ import {
     StyleSheet,
 } from 'react-native';
 
+const styles = require('./styles.js');
+
 export default class MyScene extends Component {
 
     static get defaultProps() {
@@ -43,7 +45,7 @@ export default class MyScene extends Component {
                     <View style={{flex: 1, backgroundColor: 'skyblue', alignItems: 'center'}}>
                     {
                         <LoginButton
-                          publishPermissions={["publish_actions"]}
+                          //publishPermissions={["publish_actions"]}
                           onLoginFinished={
                             this.props.onForward
                             /*(error, result) => {
@@ -68,6 +70,7 @@ export default class MyScene extends Component {
         } 
         else {
             return(
+
                 <View>
             <Text>Current Scene: {this.props.title}</Text>
 
@@ -88,25 +91,6 @@ const FBSDK = require('react-native-fbsdk');
 const {
   LoginButton,
 } = FBSDK;
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: 'center',
-    alignItems: 'center',
-    backgroundColor: '#F5FCFF',
-  },
-  welcome: {
-    fontSize: 20,
-    textAlign: 'center',
-    margin: 10,
-  },
-  instructions: {
-    textAlign: 'center',
-    color: '#333333',
-    marginBottom: 5,
-  },
-});
 
 MyScene.propTypes = {
 title: PropTypes.string.isRequired,
