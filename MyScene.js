@@ -32,10 +32,10 @@ export default class MyScene extends Component {
                         
                         <TouchableHighlight onPress={this.props.onForward}>
                         <Image source={
-                            require('./img/favicon.png')
-                            //{uri:
+                            //require('./img/favicon.png')
+                            {uri:
                             //'https://facebook.github.io/react/img/logo_og.png'}
-                            //'https://thonburihospital.com/2015_new/asset/images/thonburi-hospital-logo.png'
+                            'https://firebasestorage.googleapis.com/v0/b/im6project.appspot.com/o/favicon.jpg?alt=media&token=902ecbc4-a22e-416e-81c4-beadfa07940b'
                         } 
                         style={{width: 200, height: 200}}
                         />
@@ -71,6 +71,9 @@ export default class MyScene extends Component {
         else {
             return(
 
+
+
+
                 <View>
             <Text>Current Scene: {this.props.title}</Text>
 
@@ -86,6 +89,8 @@ export default class MyScene extends Component {
         }
     }
 }
+
+
 
 const FBSDK = require('react-native-fbsdk');
 const {
