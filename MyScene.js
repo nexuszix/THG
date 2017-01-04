@@ -35,7 +35,7 @@ export default class MyScene extends Component {
                             //require('./img/favicon.png')
                             {uri:
                             //'https://facebook.github.io/react/img/logo_og.png'}
-                            'https://firebasestorage.googleapis.com/v0/b/im6project.appspot.com/o/favicon.jpg?alt=media&token=902ecbc4-a22e-416e-81c4-beadfa07940b'
+                            'https://firebasestorage.googleapis.com/v0/b/im6project.appspot.com/o/favicon.jpg?alt=media&token=902ecbc4-a22e-416e-81c4-beadfa07940b'}
                         } 
                         style={{width: 200, height: 200}}
                         />
